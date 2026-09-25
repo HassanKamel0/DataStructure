@@ -1,7 +1,5 @@
 package org.leetcode.learning.DLL;
 
-import java.util.*;
-
 public class Main {
 
     private static void printForward(DoublyLinkedList dll) {
@@ -212,6 +210,81 @@ public class Main {
         System.out.println("Expected Backward: 5 <-> 4 <-> 3 <-> 2 <-> 1");
         printForward(linkedListToReverse);
         printBackward(linkedListToReverse);
+        System.out.println();
+
+        DoublyLinkedList linkedListToSwap;
+
+        System.out.println("We print forward and backward to confirm");
+        System.out.println("that BOTH next and prev pointers work");
+        System.out.println("correctly after swapPairs.");
+        System.out.println();
+
+        // Test 1: Empty list
+        System.out.println("Test 1: Empty List");
+        linkedListToSwap = new DoublyLinkedList(1);
+        linkedListToSwap.makeEmpty();
+        linkedListToSwap.swapPairs();
+        System.out.println("Expected Forward: empty");
+        System.out.println("Expected Backward: empty");
+        printForward(linkedListToSwap);
+        printBackward(linkedListToSwap);
+        System.out.println();
+
+        // Test 2: Single node
+        System.out.println("Test 2: Single Node");
+        linkedListToSwap = new DoublyLinkedList(10);
+        linkedListToSwap.swapPairs();
+        System.out.println("Expected Forward: 10");
+        System.out.println("Expected Backward: 10");
+        printForward(linkedListToSwap);
+        printBackward(linkedListToSwap);
+        System.out.println();
+
+        // Test 3: Two nodes
+        System.out.println("Test 3: Two Nodes");
+        linkedListToSwap = new DoublyLinkedList(1);
+        linkedListToSwap.append(2);
+        linkedListToSwap.swapPairs();
+        System.out.println("Expected Forward: 2 <-> 1");
+        System.out.println("Expected Backward: 1 <-> 2");
+        printForward(linkedListToSwap);
+        printBackward(linkedListToSwap);
+        System.out.println();
+
+        // Test 4: Odd number of nodes
+        System.out.println("Test 4: Odd Number of Nodes");
+        linkedListToSwap = new DoublyLinkedList(1);
+        linkedListToSwap.append(2);
+        linkedListToSwap.append(3);
+        linkedListToSwap.swapPairs();
+        System.out.println("Expected Forward: 2 <-> 1 <-> 3");
+        System.out.println("Expected Backward: 3 <-> 1 <-> 2");
+        printForward(linkedListToSwap);
+        printBackward(linkedListToSwap);
+        System.out.println();
+
+        // Test 5: Even number of nodes
+        System.out.println("Test 5: Even Number of Nodes");
+        linkedListToSwap = new DoublyLinkedList(1);
+        linkedListToSwap.append(2);
+        linkedListToSwap.append(3);
+        linkedListToSwap.append(4);
+        linkedListToSwap.swapPairs();
+        System.out.println("Expected Forward: 2 <-> 1 <-> 4 <-> 3");
+        System.out.println("Expected Backward: 3 <-> 4 <-> 1 <-> 2");
+        printForward(linkedListToSwap);
+        printBackward(linkedListToSwap);
+        System.out.println();
+
+        // Test 6: Longer list (6 nodes)
+        System.out.println("Test 6: Longer List (6 Nodes)");
+        linkedListToSwap = new DoublyLinkedList(1);
+        for (int i = 2; i <= 6; i++) linkedListToSwap.append(i);
+        linkedListToSwap.swapPairs();
+        System.out.println("Expected Forward: 2 <-> 1 <-> 4 <-> 3 <-> 6 <-> 5");
+        System.out.println("Expected Backward: 5 <-> 6 <-> 3 <-> 4 <-> 1 <-> 2");
+        printForward(linkedListToSwap);
+        printBackward(linkedListToSwap);
         System.out.println();
     }
 

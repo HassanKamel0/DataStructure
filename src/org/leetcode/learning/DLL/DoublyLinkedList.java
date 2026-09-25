@@ -1,7 +1,5 @@
 package org.leetcode.learning.DLL;
 
-import org.leetcode.learning.LinkedList.LinkedList;
-
 public class DoublyLinkedList {
     private Node head;
     private Node tail;
@@ -23,18 +21,41 @@ public class DoublyLinkedList {
             prev=prev.next;
         }
         Node current=prev.next;
-        for (int i = 1; i < endIndex-startIndex; i++) {
+        for (int i = 0; i < endIndex - startIndex; i++) {
             Node toMove=current.next;
             current.next=toMove.next;
-            toMove.next.prev=current;
-            toMove.next=current;
+            if (toMove.next != null)
+                toMove.next.prev = current;
+            toMove.next = prev.next;
             toMove.prev=prev;
-            current.prev=toMove;
             prev.next=toMove;
-//            prev=prev.next;
+            toMove.next.prev = toMove;
         }
         head=dummy.next;
         head.prev=null;
+    }
+
+    public void swapPairs() {
+        if (head == null || head.next == null) return;
+        Node dummy = new Node(0);
+        dummy.next = head;
+        Node prev = dummy;
+        Node first = prev.next;
+        Node second;
+        while (first != null && first.next != null) {
+            second = first.next;
+            first.next = second.next;
+            second.next = first;
+            first.prev = second;
+            second.prev = prev;
+            prev.next = second;
+            if (first.next != null)
+                first.next.prev = first;
+            prev = first;
+            first = first.next;
+        }
+        head = dummy.next;
+        head.prev = null;
     }
 
     class Node {
